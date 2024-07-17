@@ -90,9 +90,13 @@ services:
       # Add the following variables if you want to forward any received heartbeats to another
       # Wakatime compatible server.
       HAKA_REMOTE_WRITE_URL: "https://wakatime.com/api/v1/users/current/heartbeats.bulk"
+      # You can also use this URL format to forward heartbeats to Wakapi:
+      # https://[wakapi-instance]/api/compat/wakatime/v1/users/current/heartbeats.bulk
       HAKA_REMOTE_WRITE_TOKEN: "<token>"
     ports:
-      - "127.0.0.1:8080:8080"
+      # This will start the services on all interfaces. 
+      # More info here: https://github.com/compose-spec/compose-spec/blob/master/spec.md#ports
+      - "8080:8080"
   haka_db:
     container_name: haka_db
     image: postgres:12-alpine
